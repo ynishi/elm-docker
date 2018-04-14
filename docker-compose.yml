@@ -1,9 +1,16 @@
 version: '3'
 services:
   elm:
-    build: .
+    image: ynishi/elm
     working_dir: /home/node/app
     volumes:
-      - ./app:/home/node/app 
+      - ./app:/home/node/app
     ports:
       - 8000:8000
+  elm-test:
+    build: .
+    command: elm-test
+    volumes:
+      - ./app:/home/node/app
+    ports:
+      - 8001:8000
