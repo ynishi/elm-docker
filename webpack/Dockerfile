@@ -1,0 +1,17 @@
+FROM ynishi/elm:latest 
+
+USER node
+RUN npm install -g \
+  webpack@1 \
+  webpack-dev-middleware@1 \
+  webpack-dev-server@1 \
+  elm-webpack-loader@4 \
+  file-loader@0 \
+  style-loader@0 \
+  css-loader@0 \
+  url-loader@0 \
+  ace-css@1 \
+  font-awesome@4
+
+WORKDIR /home/node/app
+ENTRYPOINT ["npm"]
