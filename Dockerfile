@@ -12,5 +12,5 @@ RUN mkdir ~node/.npm-global \
     elm-format
 
 WORKDIR /home/node/app
-EXPOSE 8000
+
 CMD ["elm-reactor", "--address=0.0.0.0"]
