@@ -1,16 +1,25 @@
 FROM node:latest
 
-ENV NPM_CONFIG_PREFIX /home/node/.npm-global
-ENV PATH ${PATH}:${NPM_CONFIG_PREFIX}/bin
+ENV YARNHOME /home/node/yarn
+ENV APPHOME /home/node/app
+ENV PATH $PATH:$YARNHOME/bin
+
+RUN set -eux; \
+  mkdir -p $YARNHOME/bin $APPHOME \
+  && chown -R node:node ~node
 
 USER node
-RUN mkdir ~node/.npm-global \
-  && mkdir ~node/app \
-  && npm install -g \
+RUN set -eux; \
+  yarn global add --prefix $YARNHOME \
     elm \
     elm-test \
-    elm-format
+    elm-format \
+    elm-live \
+  && elm --version \
+  && elm-test --version \
+  && elm-format \
+  && elm-live --version
 
-WORKDIR /home/node/app
+WORKDIR $APPHOME
 
 CMD ["elm-reactor", "--address=0.0.0.0"]

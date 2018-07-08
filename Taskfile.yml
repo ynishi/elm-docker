@@ -1,0 +1,17 @@
+version: '2'
+
+vars:
+  REPO: ynishi/elm
+
+tasks:
+  build:
+    desc: build docker image
+    cmds:
+      - docker build -t {{.REPO}}:latest .
+      - docker build -t {{.REPO}}:${VERSION} .
+  push:
+    deps: [build]
+    desc: push docker image
+    cmds:
+      - docker push {{.REPO}}:latest
+      - docker push {{.REPO}}:${VERSION}
