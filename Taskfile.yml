@@ -2,16 +2,21 @@ version: '2'
 
 vars:
   REPO: ynishi/elm
+  WP: webpack
 
 tasks:
   build:
     desc: build docker image
     cmds:
-      - docker build -t {{.REPO}}:latest .
+      - docker build -t {{.REPO}}:latest . # elm
       - docker build -t {{.REPO}}:${VERSION} .
+      - docker build -t {{.REPO}}:latest-{{.WP}} {{.WP}} # include webpack
+      - docker build -t {{.REPO}}:${VERSION}-{{.WP}} {{.WP}}
   push:
     deps: [build]
     desc: push docker image
     cmds:
-      - docker push {{.REPO}}:latest
+      - docker push {{.REPO}}:latest # elm
       - docker push {{.REPO}}:${VERSION}
+      - docker push {{.REPO}}:latest-{{.WP}} # include webpack
+      - docker push {{.REPO}}:${VERSION}-{{.WP}}
