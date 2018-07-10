@@ -19,8 +19,8 @@ services:
     links:
       - dev-server
   elm-webpack:
-    image: ynishi/elm:webpack
-    command: start
+    image: ynishi/elm:latest-webpack
+    command: npm start
     volumes:
       - ./webpack:/home/node/app
     ports:
