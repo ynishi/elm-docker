@@ -15,6 +15,7 @@ RUN set -eux; \
     elm-test \
     elm-format \
     elm-live \
+    create-elm-app \
   && elm --version \
   && elm-test --version \
   && elm-format \
