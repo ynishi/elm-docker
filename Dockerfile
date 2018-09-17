@@ -1,5 +1,7 @@
 FROM node:latest
 
+ARG ELM_TEST_VERSION=latest
+
 ENV YARNHOME /home/node/yarn
 ENV APPHOME /home/node/app
 ENV PATH $PATH:$YARNHOME/bin
@@ -12,7 +14,7 @@ USER node
 RUN set -eux; \
   yarn global add --prefix $YARNHOME \
     elm \
-    elm-test \
+    elm-test@$ELM_TEST_VERSION \
     elm-format \
     elm-live \
     create-elm-app \
@@ -23,4 +25,4 @@ RUN set -eux; \
 
 WORKDIR $APPHOME
 
-CMD ["elm-reactor", "--address=0.0.0.0"]
+CMD ["elm reactor", "--address=0.0.0.0"]
