@@ -3,14 +3,15 @@ version: '2'
 vars:
   REPO: ynishi/elm
   WP: webpack
-  VERSION: 10.6.0-0.18.0-1 # ${node}-${elm}-${repo}
+  VERSION: 10.6.0-0.19.0-1 # ${node}-${elm}-${repo}
+  ELM_TEST_VERSION: 0.19.0-beta9
 
 tasks:
   build:
     desc: build docker image
     cmds:
-      - docker build -t {{.REPO}}:latest . --no-cache # elm
-      - docker build -t {{.REPO}}:{{.VERSION}} .
+      - docker build -t {{.REPO}}:latest --build-arg ELM_TEST_VERSION={{.ELM_TEST_VERSION}} . --no-cache # elm
+      - docker build -t {{.REPO}}:{{.VERSION}} --build-arg ELM_TEST_VERSION={{.ELM_TEST_VERSION}} .
       - docker build -t {{.REPO}}:latest-{{.WP}} {{.WP}} --no-cache # include webpack
       - docker build -t {{.REPO}}:{{.VERSION}}-{{.WP}} {{.WP}}
   push:

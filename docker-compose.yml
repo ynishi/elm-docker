@@ -7,8 +7,6 @@ services:
       - ./app:/home/node/app
     ports:
       - 8000:8000
-    links:
-      - dev-server
   elm-test:
     image: ynishi/elm
     command: elm-test
@@ -16,8 +14,6 @@ services:
       - ./dev:/home/node/app
     ports:
       - 8001:8000
-    links:
-      - dev-server
   elm-webpack:
     image: ynishi/elm:latest-webpack
     command: npm start
@@ -25,11 +21,3 @@ services:
       - ./webpack:/home/node/app
     ports:
       - 8080:8080
-  dev-server:
-    build:
-      context: ./server
-    command: api.js
-    volumes:
-       - ./server:/home/node/app
-    ports:
-      - 4000:4000
