@@ -8,6 +8,12 @@
 ```
 docker-compose up -d
 ```
+* sample to use like command
+```
+cat sample_alias.sh
+# !!! set aliases in current !!!
+source sample_alias.sh
+```
 ### set up webpack
 * To set up webpack app, use webpack image and npm command.
 * sample command is below.
