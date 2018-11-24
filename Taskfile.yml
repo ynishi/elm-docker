@@ -3,7 +3,7 @@ version: '2'
 vars:
   REPO: ynishi/elm
   WP: webpack
-  VERSION: 10.6.0-0.19.0-1 # ${node}-${elm}-${repo}
+  VERSION: 10.6.0-0.19.0-2 # ${node}-${elm}-${repo}
   ELM_TEST_VERSION: 0.19.0-beta9
 
 tasks:
